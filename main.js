@@ -26,8 +26,7 @@ client.on('message', message => {
 
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
-  const user = message.mentions.users.first();
-  //console.log();
+  console.log();
 
   const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
   if (!command) return;
@@ -44,12 +43,7 @@ client.on('message', message => {
     if (command.help.usage) noArgsReply += `\nVoici comment utiliser la commande : \`${PREFIX}${command.help.name} ${command.help.usage}\``
 
     return message.channel.send(noArgsReply);
-  };
-
-  if (command.help.isUserAdmin && !user) return message.reply('il faut mentionner un utilisateur.');
-
-  if (command.help.isUserAdmin && message.guild.member(user).hasPermission('BAN_MEMBERS') ) 
-    return message.reply('tu ne peux pas utiliser cette commande sur cet utilisateur.');
+  }
 
   if (!client.cooldowns.has(command.help.name)) {
     client.cooldowns.set(command.help.name, new Collection());
@@ -75,8 +69,6 @@ client.on('message', message => {
 });
 
 client.on('ready', () => console.log(`${client.user.tag} à démarré avec succès !`))
-//client.login(TOKEN); // Token enregistré dans => config.js
-
+// client.login(TOKEN); // Token enregistré dans => config.js
 
 client.login(process.env.TOKEN);
-
