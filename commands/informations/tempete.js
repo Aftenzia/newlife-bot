@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
 	.setTimestamp()
   .setFooter('© NEWLIFE');
   
-  //let log_channel = client.channels.cache.get('785476405201862667') // LOG DEV
+  // let log_channel = client.channels.cache.get('785476405201862667') // LOG DEV
   let log_channel = client.channels.cache.get('769090337288486922') //LOG NEWLIFE - TCHAT GENERAL HRP
   log_channel.send(tempete_embed);
 
